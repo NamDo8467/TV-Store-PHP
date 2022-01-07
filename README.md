@@ -1,5 +1,17 @@
 # TV-Store-PHP
 
+## Adding
+Users can add a TV
+
+## Updating
+Users can update a TV information with validation functionality when some information is in the wrong format
+
+## Reading
+Users can select a specific TV to view its details
+
+## Deleting
+Users can delete a TV
+
 ## Searching
 Users can go through the list of TVs, search for a specific one by either brand or id
 
