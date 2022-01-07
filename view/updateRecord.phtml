@@ -1,0 +1,69 @@
+<div class="container">
+    <h1 class='text-center'>UPDATE TV</h1>
+    <form method='POST'>
+        <div class="form-group mt-3 mx-2">
+            <label for="type">Type: <span class='text-danger fw-bolder'>&#42;</span></label>
+            <select name="type" id="type" required>
+                <option value="" disabled hidden>&nbsp;</option>  
+                <?php foreach($set_of_type as $tv_type):?>
+                    <?php if($type != ''):?>
+                        <?php echo $tv_type == trim($type) ? "<option value='$tv_type' selected>$tv_type</option>" : null?>
+                    <?php elseif($tv_type == trim($update_type)):?>
+                        <?php echo "<option value='$tv_type' selected>$tv_type</option>"?>
+                    <?php else:?>
+                        <?php echo "<option value='$tv_type'>$tv_type</option>" ?>
+                    <?php endif;?>
+                <?php endforeach;?>
+            </select>
+        </div>
+
+        <div class="form-group mt-3 mx-2">
+            <label>Brand: <span class='text-danger fw-bolder'>&#42;</span></label>
+                <?php foreach($set_of_brand as $tv_brand):?>
+                    <?php echo "<div class='form-check form-check-inline'>"?>
+                        <?php if($brand != ''):?>
+                            <?php echo $tv_brand == trim($brand) ? "<input class='form-check-input' type='radio' name='brand' value='$tv_brand' id='$tv_brand' checked>" : null?>
+                        <?php elseif($tv_brand == trim($update_brand)):?>
+                            <?php echo "<input class='form-check-input' type='radio' name='brand' value='$tv_brand' id='$tv_brand' checked>"?>
+                        <?php else:?>
+                            <?php echo "<input class='form-check-input' type='radio' name='brand' value='$tv_brand' id='$tv_brand'>"?>
+                        <?php endif; ?>
+
+                        <?php echo "<label class='form-check-label' for='$tv_brand'>$tv_brand</label>"?>
+                    <?php echo "</div>"?>
+                <?php endforeach;?>
+        </div>
+
+        <div class="form-group mt-3 mx-2">
+            <label for="model">Model: <span class='text-danger fw-bolder'>&#42;</span></label>
+            <input type="text" class="form-control" name='model' value='<?= trim($update_model) ?>' id="model" placeholder="Enter the model" required>
+        </div>
+
+        <div class="form-group mt-3 mx-2">
+            <label for="size">Size: <span class='text-danger fw-bolder'>&#42;</span></label>
+            <select name="size" id="size">
+                <?php foreach ($set_of_size as $size): ?>
+                    <?= trim($update_size) == $size ? "<option value='{$size}' selected>$size''</option>" : "<option value='{$size}'>$size''</option>"  ?>
+                <?php endforeach; ?>
+            </select>
+        </div>
+
+        <div class="form-group mt-3 mx-2">
+            <label for="price">Price: <span class='text-danger fw-bolder'>&#42;</span></label>
+            <p class='text-danger'><?= $price_error?></p>
+            <input type="text" class="form-control" name='price' value='<?= $price == '' ? $update_price : $price ?>' id="price" placeholder="Enter the price" required>
+        </div>
+
+        <div class="form-group mt-3 mx-2">
+            <label for="sale_price">Sale:</label>
+            <p class='text-danger'><?= $sale_price_error?></p>
+            <input type="text" class="form-control" name='sale_price' value='<?= $sale_price == '' ? $update_sale_price : $sale_price ?>' id="sale_price" placeholder="Enter the sale price">
+        </div>    
+
+        <div class="form-group mt-3 mx-2">
+            <label for="description" class="form-label">Description</label>
+            <textarea class="form-control" name='description' id="description" rows="3"><?=$description ? $description : $update_description ?></textarea>
+        </div>
+      <button type="submit" class="btn btn-primary mt-3 mx-2">Update</button>
+    </form>
+</div>

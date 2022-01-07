@@ -1,0 +1,79 @@
+<div class="container">
+    <h1 class='text-center mb-4'>TV STORE</h1>
+    <form method='GET' class="d-flex flex-column mb-4">
+        <div class="filter mb-3">
+            <h5 class='text-dark'>Filter item by brand: &nbsp;</h5>
+            <?php foreach($set_of_brand as $brand):?>
+                <?php echo "<div class='form-check form-check-inline'>" ?>
+                    <?= "<input class='form-check-input' type='radio' name='filter_brand' id='$brand' value='$brand'>" ?>
+                    <?= "<label class='form-check-label' for='$brand'>$brand</label>" ?>
+                <?php echo "</div>"?>
+            <?php endforeach;?>
+        </div>
+        
+        <div class="search d-flex">
+            <input class="form-control me-2" name='search_id' type="search" placeholder="Search by item id">
+            <button class="btn btn-outline-primary" type="submit">Search</button>
+        </div>
+    </form> 
+
+    
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Item #</th>
+                <th scope="col">Type</th>
+                <th scope="col">Brand</th>
+                <th scope="col">Model</th>
+                <th scope="col">Size</th>
+                <th scope="col">Price</th>
+                <th scope="col" class='text-center' style='width:100px'>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php if($records != 'No result found'): ?>
+                <?php foreach($records as $key => $value):?>
+                    <tr>
+                        <td><?php echo $key+1?></td>
+                        <td><a href="?page=item&item_number=<?= $value[1]?>"><?php echo $value[1]?></a></td>
+                        <td><?php echo $value[2]?></td>
+                        <td><?php echo $value[3]?></td>
+                        <td><?php echo $value[4]?></td>
+                        <td><?php echo $value[5]."''"?></td>
+                        <td><?php echo $value[7] == "" ? "$".$value[6] : "<span class='text-danger'>$$value[7]</span>"?></td>
+                        <td class='d-flex justify-content-start'>
+                            <form class='mx-1' method='GET'>
+                                <input type="hidden" name="page" value='updateRecord'>
+                                <input type="hidden" name="record[id]" value='<?= $value[0]?>'>
+                                <input type="hidden" name="record[item_number]" value='<?= $value[1]?>'>
+                                <input type="hidden" name="record[type]" value='<?= $value[2]?>'>
+                                <input type="hidden" name="record[brand]" value='<?= $value[3]?>'>
+                                <input type="hidden" name="record[model]" value='<?= $value[4]?>'>
+                                <input type="hidden" name="record[size]" value='<?= $value[5]?>'>
+                                <input type="hidden" name="record[price]" value='<?= $value[6]?>'>
+                                <input type="hidden" name="record[sale_price]" value='<?= $value[7]?>'>
+                                <input type="hidden" name="record[description]" value='<?= $value[8]?>'>
+                                <button class="btn btn-success">Update</button>
+                            </form>
+                        
+                            <form class='mx-1' method='GET'>
+                                <input type="hidden" name="page" value='deleteRecord'>
+                                <input type="hidden" name="record[id]" value='<?= $value[0]?>'>
+                                <button class="btn btn-danger">Delete</button>
+                            </form>
+                        </td>
+                    </tr>
+                <?php endforeach;?>
+            <?php elseif($records == 'No result found'):?>
+                <tr>
+                    <td class='text-center' colspan="8">
+                        <?php echo "<h3>" . $records . "</h3>"?>    
+                    </td>
+                </tr>
+               
+            <?php endif;?>
+            
+        </tbody>
+    </table>
+</div>

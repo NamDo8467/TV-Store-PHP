@@ -1,0 +1,30 @@
+<div class="container h-75 d-flex align-items-center">
+    <div class="item-container d-flex align-items-center col-12">
+        <div class="item-image col-5">
+            <img src="view/img/television.jpg" alt="Television">
+        </div>
+
+        <div class="item-information col-7">
+            <div class="type mb-3">
+                <h3><?php echo $specificItem[4]?> <?php echo $specificItem[5]?>" <?php echo $specificItem[2]?> Full HD Television</h3>
+            </div>
+            <div class="id mb-2">
+                <span class='text-secondary'>Item Number: </span><?php echo $specificItem[1]?>
+            </div>
+            <div class="brand mb-4">
+                <span class='text-secondary'>Brand: </span><?php echo $specificItem[3]?>
+            </div>
+
+            
+            <div class="price mb-2">
+                <h4><?php echo $specificItem[7] == '' ? "$$specificItem[6]" : "<span class='text-danger'>$$specificItem[7]</span>"?></h4>
+            </div>
+            <hr>
+            
+            <div class="description">
+                <h5>Description: </h5>
+                <?php echo $specificItem[8] == '' ? "No description" : $specificItem[8]?>
+            </div>
+        </div>
+    </div>
+</div>

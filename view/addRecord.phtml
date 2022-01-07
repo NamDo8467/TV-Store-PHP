@@ -1,0 +1,69 @@
+<div class="container">
+    <h1 class='text-center'>ADD TV</h1>
+    <form method='POST'>
+        <div class="form-group mt-4 mx-2">
+            <label for="type">Type: <span class='text-danger fw-bolder'>&#42;</span></label>
+            <select name="type" id="type" required>
+                <?= $type == '' ? "<option value='' selected disabled hidden>Select one</option>":"<option value='' disabled hidden>Select one</option>" ?>
+                <?php foreach($set_of_type as $tv_type):?>
+                    <?php if($tv_type == $type):?>
+                        <?= "<option value='$tv_type' selected>$tv_type</option>"?>
+                    <?php else:?>
+                        <?= "<option value='$tv_type'>$tv_type</option>" ?>
+                    <?php endif ?>
+                <?php endforeach ?>
+            </select>
+        </div>
+
+        <div class="form-group mt-4 mx-2">
+            <label>Brand: <span class='text-danger fw-bolder'>&#42;</span></label>
+            <?php foreach($set_of_brand as $key => $tv_brand):?>
+                <?= "<div class='form-check form-check-inline'>"?>
+                    <?php if($tv_brand == $brand):?>
+                        <?= "<input class='form-check-input' type='radio' name='brand' value='$tv_brand' id='$tv_brand' checked>"?>
+                    <?php else:?>
+                        <?= "<input class='form-check-input' type='radio' name='brand' value='$tv_brand' id='$tv_brand' required>"?>
+                    <?php endif;?>
+                    <?= "<label class='form-check-label' for='$tv_brand'>$tv_brand</label>" ?>
+                <?= "</div>" ?>
+            <?php endforeach;?>
+        </div>
+
+      <div class="form-group mt-4 mx-2">
+        <label for="model">Model: <span class='text-danger fw-bolder'>&#42;</span></label>
+        <input type="text" class="form-control" name='model' value = '<?=$model ?>' id="model" placeholder="Enter the model" required>
+      </div>
+
+      <div class="form-group mt-4 mx-2">
+            <label for="size">Size: <span class='text-danger fw-bolder'>&#42;</span></label>
+            <select name="size" id="size" required>
+            <?= $size == '' ? "<option value='' selected disabled hidden>Select one</option>":"<option value='' disabled hidden>Select one</option>" ?>
+                <?php foreach($set_of_size as $tv_size):?>
+                    <?php if($tv_size == $size):?>
+                        <?php echo "<option value='{$tv_size}' selected>$tv_size</option>"?>
+                    <?php else:?>
+                        <?php echo "<option value='{$tv_size}'>$tv_size</option>"?>
+                    <?php endif;?>
+                <?php endforeach;?>
+            </select>
+        </div>
+
+      <div class="form-group mt-4 mx-2">
+        <label for="price">Price: <span class='text-danger fw-bolder'>&#42;</span></label>
+        <p class='text-danger'><?= $price_error?></p>
+        <input type="text" class="form-control" name='price' value='<?= $price ?>' id="price" placeholder="Enter the price" required>
+      </div>
+
+      <div class="form-group mt-4 mx-2">
+        <label for="sale">Sale:</label>
+        <p class='text-danger'><?= $sale_price_error?></p>
+        <input type="text" class="form-control" name='sale_price' value='<?= $sale_price ?>' id="sale" placeholder="Enter the sale">
+      </div>    
+
+      <div class="form-group mt-4 mx-2">
+        <label for="description" class="form-label">Description</label>
+        <textarea class="form-control" name='description' id="description" rows="3"><?= $description ?></textarea>
+    </div>
+      <button type="submit" class="btn btn-primary mt-4 mx-2">Submit</button>
+    </form>
+</div>

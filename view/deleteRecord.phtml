@@ -1,0 +1,14 @@
+<div class="container">
+    <div class="container d-flex">
+        <form method='POST'>
+            <div class="form-group">
+                <h3>Are you sure you want to delete it?</h3>
+                <input type="hidden" name="id" value='<?= $delete_id?>'>
+            </div>
+            <input class='btn btn-primary' type="submit" name='yes_button' value="yes">
+            <input class='btn btn-danger' type="submit" name='no_button' value="no">
+            
+        </form>
+        
+    </div>
+</div>
